@@ -2,12 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.event.*;
-import java.awt.event.*;
-import java.util.Hashtable;
-import java.util.ArrayList;
-import javax.swing.*;
 
 public class Map
 {
