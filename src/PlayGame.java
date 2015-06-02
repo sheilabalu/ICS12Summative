@@ -12,7 +12,7 @@ public class PlayGame extends JFrame
 		pane.setPreferredSize(new Dimension(1000,600));
 		DrawBoard drawboard= new DrawBoard (1000,600);
 		pane.setLayout(new BorderLayout());
-		map1=new Map ("Map1");
+		map1=new Map ("Map2");
 		//drawboard.repaint();
 		pane.add(drawboard);
 	}

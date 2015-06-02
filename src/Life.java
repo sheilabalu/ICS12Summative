@@ -16,6 +16,7 @@ public class Life
 	
 	
 	
+	
 	public void hurt(int attack){health-=((int)(attack*(1-armor)));}
 	public void regen(){health+=((int)(Math.random()*me.getInitHealth()*regenRate));}
 	public int attack(){return (int)(attack*(Math.random()/2+0.75));}
