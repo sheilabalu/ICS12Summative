@@ -32,6 +32,41 @@ public class Map
 		}	
 	}
 	
+	public void show (Graphics g){
+		char id = ' ';
+		
+		//goes through array
+		for (int row=0;row<map.length;row++){
+			for (int col=0;col<map[0].length;col++){
+				//if space
+				if (map[row][col]==' ')
+					id = ' ';
+				//if it is not row 0 and the grid above it is also wall
+				else if (map[row][col]=='W')
+				{
+					if (row==0)
+						id = 'g';
+					//if the grid above it is not wall
+					else if (map[row-1][col]!='W')
+						id = 'g';
+					//if it is not the last row 
+					else if (row!=map.length-1)
+					{
+						//if the grid below it is not wall
+						if (map[row+1][col]!='W')
+							id = 'f';
+						else 
+							id = 'n';
+					}
+					else 
+						id = 'n';
+				}
+				g.drawImage(stageImage.parseImg(id),col*50, row*50, null);
+			}
+
+		}	
+	}
+	
 //	public Map (String path)
 //	{
 //		map= new char[12][20];
@@ -61,51 +96,51 @@ public class Map
 //	}
 
 	//method to draw map
-	public void show (Graphics g)
-	{
-		String path=null;
-		//goes through array
-		for (int row=0;row<map.length;row++)
-		{
-			for (int col=0;col<map[0].length;col++)
-			{
-				//if space
-				if (map[row][col]==' ')
-					path="Space.png";
-				//if it is not row 0 and the grid above it is also wall
-				else if (map[row][col]=='W')
-				{
-					if (row==0)
-						path="GrassFloor.png";
-					//if the grid above it is not wall
-					else if (map[row-1][col]!='W')
-						path="GrassFloor.png";
-					//if it is not the last row 
-					else if (row!=map.length-1)
-					{
-						//if the grid below it is not wall
-						if (map[row+1][col]!='W')
-							path="Float.png";
-						else 
-							path="NoGrassFloor.png";
-					}
-					else 
-						path= "NoGrassFloor.png";
-				}
-				g.drawImage(getImage(path),col*50, row*50, null);
-			}
+//	public void show (Graphics g)
+//	{
+//		String path=null;
+//		//goes through array
+//		for (int row=0;row<map.length;row++)
+//		{
+//			for (int col=0;col<map[0].length;col++)
+//			{
+//				//if space
+//				if (map[row][col]==' ')
+//					path="Space.png";
+//				//if it is not row 0 and the grid above it is also wall
+//				else if (map[row][col]=='W')
+//				{
+//					if (row==0)
+//						path="GrassFloor.png";
+//					//if the grid above it is not wall
+//					else if (map[row-1][col]!='W')
+//						path="GrassFloor.png";
+//					//if it is not the last row 
+//					else if (row!=map.length-1)
+//					{
+//						//if the grid below it is not wall
+//						if (map[row+1][col]!='W')
+//							path="Float.png";
+//						else 
+//							path="NoGrassFloor.png";
+//					}
+//					else 
+//						path= "NoGrassFloor.png";
+//				}
+//				g.drawImage(getImage(path),col*50, row*50, null);
+//			}
+//
+//		}	
+//	}
 
-		}	
-	}
-
-	//method to retrieve image
-	public static BufferedImage getImage (String path)
-	{
-		BufferedImage image = null;
-		try
-		{
-			image = ImageIO.read (new File ("MapImage//"+path));
-		}catch (Exception e){}
-		return image;
-	}
+//	//method to retrieve image
+//	public static BufferedImage getImage (String path)
+//	{
+//		BufferedImage image = null;
+//		try
+//		{
+//			image = ImageIO.read (new File ("MapImage//"+path));
+//		}catch (Exception e){}
+//		return image;
+//	}
 }
