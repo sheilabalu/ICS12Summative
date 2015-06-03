@@ -1,7 +1,9 @@
+import java.awt.Graphics;
+
 
 public class Life
 {
-	private int health, attack, x, y, w, h;
+	private int health, attack, x, y, s;
 	private Type me;
 	private double armor, regenRate;
 	
@@ -15,12 +17,14 @@ public class Life
 		
 		x = posx;
 		y = posy;
-		w = me.getWidth();
-		h = me.getHeight();
+		s = me.getSize();
 	}
 	
 	
-	
+	public void drawImg(Graphics g)
+	{
+		
+	}
 	
 	public void hurt(int attack){health-=((int)(attack*(1-armor)));}
 	public void regen(){health+=((int)(Math.random()*me.getInitHealth()*regenRate));}
