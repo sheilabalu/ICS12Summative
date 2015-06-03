@@ -33,6 +33,7 @@ public enum Type
 		regenRate = reg;
 		attack = atk;
 		
+		
 	}
 	
 	
@@ -61,4 +62,7 @@ public enum Type
 	public double getInitArmor(){return armor;}
 	public double getInitRegenRate() {return regenRate;}
 	public double getAttack(){return attack;}
+
+
+	public int getWidth() {return ;}
 }

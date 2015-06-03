@@ -1,17 +1,22 @@
 
 public class Life
 {
-	private int health, attack;
+	private int health, attack, x, y, w, h;
 	private Type me;
 	private double armor, regenRate;
 	
-	public Life(char c)
+	public Life(char c, int posx, int posy)
 	{
 		me = Type.parse(c);
 		health = (int)(me.getInitHealth()*(Math.random()/5+0.9));
 		armor = (me.getInitArmor()*(Math.random()/5+0.9));
 		regenRate = (me.getInitRegenRate()*(Math.random()/5+0.9));
 		attack = (int)(me.getAttack()*(Math.random()/5+0.9));
+		
+		x = posx;
+		y = posy;
+		w = me.getWidth();
+		h = me.getHeight();
 	}
 	
 	

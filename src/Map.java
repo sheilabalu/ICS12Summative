@@ -3,8 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 
-import javax.imageio.ImageIO;
-
 public class Map
 {
 	private char[][] map;
