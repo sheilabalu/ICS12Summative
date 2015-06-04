@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Map
@@ -8,6 +9,7 @@ public class Map
 	private char[][] map;
 	private BufferedImage mapImage;
 	private Scanner s;
+	private ArrayList<Life> monsters = new ArrayList<Life>(0);
 
 	public Map (String path)
 	{
@@ -27,7 +29,15 @@ public class Map
 			for(int j = 0; j < map[0].length; j++){
 				map[i][j] = line.charAt(j);
 			}
-		}	
+		}
+		
+		try{
+			s = new Scanner(new File("Mtxt/"+path+".txt"));
+		}catch(FileNotFoundException e){
+			System.out.println("Map named \""+path+".txt\" not found.");
+		}
+		
+		
 	}
 	
 	public void show (Graphics g){
@@ -60,6 +70,10 @@ public class Map
 						id = 'n';
 				}
 				g.drawImage(stageImage.parseImg(id),col*50, row*50, null);
+				
+				for(int i = 0 ; i < monsters.size() ; i++){
+					monsters.get(i).drawImg(g);
+				}
 			}
 
 		}	

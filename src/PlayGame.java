@@ -36,5 +36,10 @@ public class PlayGame extends JFrame
 		playGame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		playGame.pack ();
 		playGame.setVisible (true);
+		playGame.play();
+	}
+	private void play() {
+		
+		
 	}
 }

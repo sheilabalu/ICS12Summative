@@ -7,14 +7,15 @@ import javax.imageio.ImageIO;
 
 public enum Type
 {
-	GHOST(			'g', "Ghost", 			10, 0.75, 0.2,  5,  25),
-	MOUSE(			'm', "Mouse", 			35, 0,    0.01, 10, 35),
-	MUSHROOM(		'M', "Mushroom",		25, 0.2,  0.07, 3,  35),
-	PENGUIN(		'p', "Penguin", 		45, 0.3,  0.03, 7,  30),
-	PIG(			'P', "Pig", 			64, 0.4,  0.04, 16, 25),
-	SLIME(			'S', "Slime", 			10, 0, 	  0.01, 4,  20),
-	SNAIL(			's', "Snail", 			25, 0.1,  0.3,  6,  30),
-	ZOMBIEMUSHROOM(	'z', "ZombieMushroom", 	15, 0.1,  0.25, 2,  35),
+	GHOST(			'g', "Ghost", 			10, 0.75, 0.2,  8,  25),
+	MOUSE(			'm', "Mouse", 			35, 0,    0.01, 20, 35),
+	MUSHROOM(		'M', "Mushroom",		25, 0.2,  0.07, 5,  35),
+	PENGUIN(		'p', "Penguin", 		45, 0.3,  0.03, 12,  30),
+	PIG(			'P', "Pig", 			64, 0.4,  0.04, 32, 25),
+	SNAIL(			's', "Snail", 			25, 0.1,  0.3,  10,  30),
+	SLIME(			'S', "Slime", 			10, 0, 	  0.01, 7,  20),
+	ZOMBIEMUSHROOM(	'z', "ZombieMushroom", 	15, 0.1,  0.25, 4,  35),
+	DRAGON(			'D', "Dragon", 			255,0.42, 0.1,  42, 40),
 	
 	
 	
