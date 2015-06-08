@@ -1,35 +1,45 @@
 import java.awt.*;
-
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.util.Hashtable;
+import java.util.ArrayList;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class PlayGame extends JFrame
 {
 	public Container pane = getContentPane ();
-	public Map map;
+	
+   //==============constructor=================
 	public PlayGame ()
 	{
 		pane.setPreferredSize(new Dimension(1000,600));
-		DrawBoard drawboard= new DrawBoard (1000,600);
 		pane.setLayout(new BorderLayout());
-		map=new Map ("Map2");
-		//drawboard.repaint();
-		pane.add(drawboard);
+      //show title screen
+      pane.add(new MainMenu(this, 1000,600),BorderLayout.CENTER);
 	}
-
-	public class DrawBoard extends JPanel
-	{
-		public DrawBoard (int x, int y)
+	
+	//==============method to retrieve image=================
+	public static BufferedImage getImage (String path)
+    {
+		BufferedImage image = null;
+		try
 		{
-			super ();
-			setPreferredSize(new Dimension(x,y));
+	 	   image = ImageIO.read (new File (path));
 		}
 
-		public void paintComponent (Graphics g)
+
+		catch (Exception e)
 		{
-			map.show(g);
 		}
+		return image;
 	}
+
+	//==============main method=================
 	public static void main (String[] args)
 	{
 		PlayGame playGame = new PlayGame ();

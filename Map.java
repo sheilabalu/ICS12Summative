@@ -11,6 +11,7 @@ public class Map
 	private Scanner s;
 	private ArrayList<Life> monsters = new ArrayList<Life>(0);
 	
+	//==============constructor=================
 	public Map (String path)
 	{
 		String line;
@@ -49,6 +50,7 @@ public class Map
 		return true;
 	}
 	
+	//==============show method that paints the map=================
 	public void show (Graphics g){
 		char id = ' ';
 		
