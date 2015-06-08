@@ -19,6 +19,18 @@ public class Life
 		y = posy;
 		s = me.getSize();
 	}
+	public Life(char c)
+	{
+		me = Type.parse(c);
+		health = (int)(me.getInitHealth()*(Math.random()/5+0.9));
+		armor = (me.getInitArmor()*(Math.random()/5+0.9));
+		regenRate = (me.getInitRegenRate()*(Math.random()/5+0.9));
+		attack = (int)(me.getAttack()*(Math.random()/5+0.9));
+		
+		x = 50;
+		y = 50;
+		s = me.getSize();
+	}
 	
 	public void move(){};
 	public void drawImg(Graphics g){g.drawImage(me.getImg(pic), x, y, s-1, s-1, null);}

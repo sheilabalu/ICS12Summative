@@ -30,7 +30,7 @@ public enum Type
 	private final int health, attack, size;
 	private final double armor, regenRate;
 	private final String name;
-	private final BufferedImage[] bi = new BufferedImage[6];
+	private final BufferedImage[] bi = new BufferedImage[4];
 	
 	private Type(char c, String n, int hp, double arm, double reg, int atk, int s)
 	{
@@ -43,12 +43,10 @@ public enum Type
 		size = s;
 		
 		try {
-			bi[0] = ImageIO.read (new File ("MonsterImage/"+name+"_MoveL.png"));
-			bi[1] = ImageIO.read (new File ("MonsterImage/"+name+"_HitL.png"));
-			bi[2] = ImageIO.read (new File ("MonsterImage/"+name+"_DieL.png"));
-			bi[3] = ImageIO.read (new File ("MonsterImage/"+name+"_MoveR.png"));
-			bi[4] = ImageIO.read (new File ("MonsterImage/"+name+"_HitR.png"));
-			bi[5] = ImageIO.read (new File ("MonsterImage/"+name+"_DieR.png"));
+			bi[0] = ImageIO.read (new File ("Monsters/"+name+"_MoveL.png"));
+			bi[1] = ImageIO.read (new File ("Monsters/"+name+"_DieL.png"));
+			//bi[2] = ImageIO.read (new File ("Monsters/"+name+"_MoveR.png"));
+			//bi[3] = ImageIO.read (new File ("Monsters/"+name+"_DieR.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -10,7 +10,7 @@ public class Map
 	private BufferedImage mapImage;
 	private Scanner s;
 	private ArrayList<Life> monsters = new ArrayList<Life>(0);
-
+	
 	public Map (String path)
 	{
 		String line;
@@ -34,10 +34,19 @@ public class Map
 		try{
 			s = new Scanner(new File("Mtxt/"+path+".txt"));
 		}catch(FileNotFoundException e){
-			System.out.println("Map named \""+path+".txt\" not found.");
+			System.out.println("monster list named \""+path+".txt\" not found.");
 		}
-		
-		
+		nextWave();
+	}
+	
+	public boolean nextWave()
+	{
+		if(s.hasNextLine() == false)
+			return false;
+		String mStr = s.nextLine();
+		for(int i = 0 ; i < mStr.length() ; i++)
+			monsters.add(new Life(mStr.charAt(i)));
+		return true;
 	}
 	
 	public void show (Graphics g){
@@ -76,7 +85,7 @@ public class Map
 				}
 			}
 
-		}	
+		}
 	}
 	
 //	public Map (String path)
