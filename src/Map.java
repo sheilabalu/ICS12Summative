@@ -45,7 +45,7 @@ public class Map
 			return false;
 		String mStr = s.nextLine();
 		for(int i = 0 ; i < mStr.length() ; i++)
-			monsters.add(new Life(mStr.charAt(i)));
+			monsters.add(new Life(mStr.charAt(i), 50, 50));
 		return true;
 	}
 	

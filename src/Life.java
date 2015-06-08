@@ -15,9 +15,9 @@ public class Life
 		regenRate = (me.getInitRegenRate()*(Math.random()/5+0.9));
 		attack = (int)(me.getAttack()*(Math.random()/5+0.9));
 		
-		x = posx;
-		y = posy;
 		s = me.getSize();
+		x = posx - s/2;
+		y = posy - s/2;
 	}
 	public Life(char c)
 	{
@@ -27,8 +27,8 @@ public class Life
 		regenRate = (me.getInitRegenRate()*(Math.random()/5+0.9));
 		attack = (int)(me.getAttack()*(Math.random()/5+0.9));
 		
-		x = 50;
-		y = 50;
+		x = 75;
+		y = 75;
 		s = me.getSize();
 	}
 	
