@@ -38,8 +38,16 @@ public class PlayGame extends JFrame
 		playGame.setVisible (true);
 		playGame.play();
 	}
-	private void play(){
-		
-		
+	private void play()
+	{
+		// check if player won or lost and display appropriate message
+	}
+	public void waves()
+	{
+		while(map.nextWave()) // return if player health <= 0
+		{
+			
+			
+		}
 	}
 }
