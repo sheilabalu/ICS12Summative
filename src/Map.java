@@ -9,6 +9,7 @@ public class Map
 	private char[][] map;
 	private BufferedImage mapImage;
 	private Scanner s;
+	private ArrayList<Thread> Th = new ArrayList<Thread>(0);
 	private ArrayList<RunnableMonster> Rm = new ArrayList<RunnableMonster>(0);
 	private ArrayList<Life> monsters = new ArrayList<Life>(0);
 	
@@ -46,7 +47,9 @@ public class Map
 		String mStr = s.nextLine();
 		for(int i = 0 ; i < mStr.length() ; i++){
 			monsters.add(new Life(mStr.charAt(i), 975 + 50*i, 545));
-			Rm.add(new RunnableMonster(monsters.get(i)));
+			Rm.add(new RunnableMonster(monsters.get(i)))
+			Th.add(new Thread(Rm.get(i)));
+			Th.get(i).start();
 		}
 		return true;
 	}

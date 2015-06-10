@@ -1,8 +1,12 @@
 
 public class RunnableMonster implements Runnable 
 {
+	public RunnableMonster(Life monster) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static void main(String args[]) {
-        (new Thread(new RunnableMonster())).start();
+        (new Thread(new RunnableMonster(null))).start();
     }
 	
 	public void run() {
