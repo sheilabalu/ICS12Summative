@@ -1,17 +1,14 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Map
 {
-	private char[][] map;
-	private BufferedImage mapImage;
-	private Scanner s;
-	private ArrayList<Thread> Th = new ArrayList<Thread>(0);
-	private ArrayList<RunnableMonster> Rm = new ArrayList<RunnableMonster>(0);
-	private ArrayList<Life> monsters = new ArrayList<Life>(0);
+	protected char[][] map;
+	//private BufferedImage mapImage;
+	protected Scanner s;
+	protected ArrayList<Life> monsters = new ArrayList<Life>(0);
 	
 	public Map (String path)
 	{
@@ -38,30 +35,21 @@ public class Map
 		}catch(FileNotFoundException e){
 			System.out.println("monster list named \""+path+".txt\" not found.");
 		}
+		nextWave();
 	}
+	
 	
 	public boolean nextWave()
 	{
 		if(s.hasNextLine() == false)
 			return false;
 		String mStr = s.nextLine();
-		for(int i = 0 ; i < mStr.length() ; i++){
-			monsters.add(new Life(mStr.charAt(i), 975 + 50*i, 545));
-			Rm.add(new RunnableMonster(monsters.get(i)))
-			Th.add(new Thread(Rm.get(i)));
-			Th.get(i).start();
-		}
+		for(int i = 0 ; i < mStr.length() ; i++)
+			monsters.add(new Life(mStr.charAt(i), 50, 50));
 		return true;
 	}
 	
-//	public void tick()
-//	{
-//		for(int i = 0 ; i < monsters.size() ; i++)
-//			monsters.get(i).tick();
-//	}
-	
-	public void show (Graphics g)
-	{
+	public void show (Graphics g){
 		char id = ' ';
 		
 		//goes through array
@@ -96,91 +84,84 @@ public class Map
 					monsters.get(i).drawImg(g);
 				}
 			}
+
 		}
 	}
-}
-
-
-
-
-
-
-
-
-
-//public Map (String path)
-//{
-//	map= new char[12][20];
-//	try
+	
+//	public Map (String path)
 //	{
-//		File file= new File ("txt//"+path+".txt");
-//		FileReader reader= new FileReader(file);
-//		//read file into 1D array
-//		char[] chars = new char[(int) file.length()];
-//		reader.read(chars);
+//		map= new char[12][20];
+//		try
+//		{
+//			File file= new File ("txt//"+path+".txt");
+//			FileReader reader= new FileReader(file);
+//			//read file into 1D array
+//			char[] chars = new char[(int) file.length()];
+//			reader.read(chars);
 //
-//		//int to keep track of chars [] index
-//		int charsIndex=0;
+//			//int to keep track of chars [] index
+//			int charsIndex=0;
 //
-//		//read into 2-D array
+//			//read into 2-D array
+//			for (int row=0;row<map.length;row++)
+//			{
+//				for (int col=0;col<map[0].length;col++)
+//				{
+//					map[row][col]=chars[charsIndex];
+//					charsIndex++;
+//				}
+//
+//			}
+//			reader.close();
+//		} catch (Exception e){}
+//	}
+
+	//method to draw map
+//	public void show (Graphics g)
+//	{
+//		String path=null;
+//		//goes through array
 //		for (int row=0;row<map.length;row++)
 //		{
 //			for (int col=0;col<map[0].length;col++)
 //			{
-//				map[row][col]=chars[charsIndex];
-//				charsIndex++;
-//			}
-//
-//		}
-//		reader.close();
-//	} catch (Exception e){}
-//}
-
-//method to draw map
-//public void show (Graphics g)
-//{
-//	String path=null;
-//	//goes through array
-//	for (int row=0;row<map.length;row++)
-//	{
-//		for (int col=0;col<map[0].length;col++)
-//		{
-//			//if space
-//			if (map[row][col]==' ')
-//				path="Space.png";
-//			//if it is not row 0 and the grid above it is also wall
-//			else if (map[row][col]=='W')
-//			{
-//				if (row==0)
-//					path="GrassFloor.png";
-//				//if the grid above it is not wall
-//				else if (map[row-1][col]!='W')
-//					path="GrassFloor.png";
-//				//if it is not the last row 
-//				else if (row!=map.length-1)
+//				//if space
+//				if (map[row][col]==' ')
+//					path="Space.png";
+//				//if it is not row 0 and the grid above it is also wall
+//				else if (map[row][col]=='W')
 //				{
-//					//if the grid below it is not wall
-//					if (map[row+1][col]!='W')
-//						path="Float.png";
+//					if (row==0)
+//						path="GrassFloor.png";
+//					//if the grid above it is not wall
+//					else if (map[row-1][col]!='W')
+//						path="GrassFloor.png";
+//					//if it is not the last row 
+//					else if (row!=map.length-1)
+//					{
+//						//if the grid below it is not wall
+//						if (map[row+1][col]!='W')
+//							path="Float.png";
+//						else 
+//							path="NoGrassFloor.png";
+//					}
 //					else 
-//						path="NoGrassFloor.png";
+//						path= "NoGrassFloor.png";
 //				}
-//				else 
-//					path= "NoGrassFloor.png";
+//				g.drawImage(getImage(path),col*50, row*50, null);
 //			}
-//			g.drawImage(getImage(path),col*50, row*50, null);
-//		}
 //
-//	}	
-//}
+//		}	
+//	}
 
-////method to retrieve image
-//public static BufferedImage getImage (String path)
-//{
-//	BufferedImage image = null;
-//	try
+//	//method to retrieve image
+//	public static BufferedImage getImage (String path)
 //	{
-//		image = ImageIO.read (new File ("MapImage//"+path));
-//	}catch (Exception e){}
-//	return image;
-//}
+//		BufferedImage image = null;
+//		try
+//		{
+//			image = ImageIO.read (new File ("MapImage//"+path));
+//		}catch (Exception e){}
+//		return image;
+//	}
+}
