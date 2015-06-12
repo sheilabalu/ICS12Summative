@@ -40,7 +40,7 @@ public class PlotGraphics
 		while (s.hasNextLine())
       {
 			line = s.nextLine();
-         g.drawString(line,20,y);
+        // g.drawString(line,20,y);
          //shift next line down
          y+=20;
 		}
