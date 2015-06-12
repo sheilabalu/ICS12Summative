@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.lang.*;
 
 public class MainMenu extends JPanel 
 {
@@ -15,7 +16,8 @@ public class MainMenu extends JPanel
       setPreferredSize(new Dimension(x, y));
       
       //"start" Button
-      JButton start= new JButton ();
+
+      JButton start= new JButton ("Start");
       setLayout(null);
       start.setBounds(450,530,100,50);
       //I want to make the button invisible but clickable but somehow set opacity won't work. 

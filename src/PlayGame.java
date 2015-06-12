@@ -1,5 +1,8 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -20,10 +23,11 @@ public class PlayGame extends JFrame
 	public Container pane = getContentPane ();
 	public Map map;
 	private Player me = new Player("ME", 100, 10, 10, 10);
+	
+	  //==============constructor=================
 	public PlayGame ()
 	{
 		pane.setPreferredSize(new Dimension(1000,600));
-		DrawBoard drawboard= new DrawBoard (1000,600);
 		pane.setLayout(new BorderLayout());
 		map=new Map ("Map2");
 		//drawboard.repaint();
@@ -101,7 +105,10 @@ public class PlayGame extends JFrame
 			map.show(g);
 			me.show(g);
 		}
+		return image;
 	}
+	
+	//==============main method=================
 	public static void main (String[] args)
 	{
 		PlayGame playGame = new PlayGame ();
