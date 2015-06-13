@@ -137,7 +137,8 @@ public class Player
   //=============show method that draws player============
     public void show (Graphics g)
     {
-        if (status == 0)
+    	System.out.print("here");
+    	if (status == 0)
         {
             if (faceRight == true)
             {
@@ -182,7 +183,8 @@ public class Player
             path = "Player_Stab1";
             path = "Weapon//" + path;
         }
-        g.drawImage (PlayGame.getImage (path), x * 50, 600 - (y*50), null);
+    	System.out.println(path+" "+x+" "+y);
+        g.drawImage (PlayGame.getImage ("Player//"+path+".png"), x * 50, 600 - (y*50), null);
     }
     
     //==============showStats method================

@@ -131,12 +131,14 @@ public class LongMessage extends JPanel
 		{
 			super ();
 			setPreferredSize(new Dimension(x,y));
+			addKeyListener(new PlayerListener(game.player,village));
 		}
 		
 		public void paintComponent (Graphics g)
 		{
-         super.paintComponent(g);
+         //super.paintComponent(g);
          village.show(g);
+         //game.player.show(g);
 		}
 	}
 

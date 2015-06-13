@@ -43,6 +43,7 @@ public class PlayGame extends JFrame
 
 		catch (Exception e)
 		{
+			System.out.println("Can't find image "+path);
 		}
 		return image;
 	}
