@@ -126,7 +126,7 @@ public class LongMessage extends JPanel
    //==============DrawBoard Class=================
   	public class DrawBoard extends JPanel
 	{
-  		public Village village= new Village ("Village");
+  		public Village village= new Village ("Village",game);
 		public DrawBoard (int x, int y)
 		{
 			super ();
