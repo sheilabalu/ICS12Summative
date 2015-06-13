@@ -1,16 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
-
-import java.lang.*;
 
 public class MainMenu extends JPanel 
 {
    private PlayGame game;
-  // private Map map1=new Map ("Map1");
-   private Village village= new Village ("Village");
-   //private PlotGraphics plotGraphics;
    
    //==============constructor=================
    public MainMenu (PlayGame g, int x, int y)
@@ -30,9 +24,6 @@ public class MainMenu extends JPanel
       //add start button to panel
       add(start);
       start.addActionListener(new BtnListener());
-      
-      //Initialize plotgraphics
-      //plotGraphics= new PlotGraphics();
    }
    
    //==============paint graphics here=================
@@ -62,30 +53,12 @@ public class MainMenu extends JPanel
       {
     	  	//Get rid of everything on screen
             game.pane.removeAll();
-            //add DrawBoard to main panel
-            game.pane.add(new LongMessage("Intro",1000,600),BorderLayout.CENTER);
+            //add Beginning message to main panel
+            game.pane.add(new LongMessage("Intro",1000,600,game),BorderLayout.CENTER);
             game.pack();
       }
    }
    
-   //==============DrawBoard Class=================
-   	public class DrawBoard extends JPanel
-	{
-   		private JButton control;
-		public DrawBoard (int x, int y)
-		{
-			super ();
-			setPreferredSize(new Dimension(x,y));
-		}
-		
-		public void paintComponent (Graphics g)
-		{
-         super.paintComponent(g);
-        // plotGraphics.long_Message("Intro", g, control);
-         //village.show(g);
-			//map1.show(g);
-		}
-	}
 }
 
 
