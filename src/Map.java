@@ -63,16 +63,18 @@ public class Map
 		{
 			player.setY(player.getY()+1);
 			player.setX(1);
-			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,5,3,100));
-			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,8,3,100));
-			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,9,3,100));
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,5,4,100));
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,8,4,100));
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,9,4,100));
 		}
 		
 		else if (path.equals("Map3"))
 		{
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,2,100));
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
+			player.setY(player.getY()+5);
+			player.setX(1);
+			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,5,9,100));
+			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,8,8,100));
+			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,12,7,100));
 		}
 	}
 	
@@ -163,7 +165,7 @@ public class Map
 		for (int k=0;k<monsters.size();k++)
 		{
 			Type type=monsters.get(k);
-			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&player.getY()==type.getY()+1)
+			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&(player.getY()==type.getY()+1||player.getY()==type.getY()||player.getY()==type.getY()-1))
 				{
 					player.loseHealth(monsters.get(k).getAttack());
 					if (player.getX()==type.getX()+1)

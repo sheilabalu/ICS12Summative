@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class Life
 {
-	private int health, attack, x, y, s, pic = 0;
+	/*private int health, attack, x, y, s, pic = 0;
 	private Type me;
 	private double armor, regenRate;
 	
@@ -41,6 +41,5 @@ public class Life
 }
 /*
 if(health <= 0)
-	.remove(i);
-
- */
+	.remove(i);*/
+}

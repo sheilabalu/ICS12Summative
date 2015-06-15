@@ -36,12 +36,23 @@ public class StageTransition extends JPanel implements ActionListener
 		else
 		{
 			t.stop();
-            //add village Scene to main panel
+         if (stageNum<4)
+         {
+			//add new fight stage to panel
             DrawBoard drawBoard= new DrawBoard(1000,600,game,stageNum);
             game.pane.add(drawBoard);
             //requestFocus back to drawBoard so keylistener would work
             drawBoard.requestFocus();
             game.pack ();
+         }
+         else 
+         {
+				//Get rid of everything on screen
+	            game.pane.removeAll();
+	            //add death message to main panel
+	            game.pane.add(new LongMessage("PlayerWin",1000,600,game),BorderLayout.CENTER);
+	            game.pack();
+         }
 		}
 	}
 	
