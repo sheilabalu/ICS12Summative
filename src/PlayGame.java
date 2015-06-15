@@ -19,7 +19,7 @@ public class PlayGame extends JFrame
 		//set layout
 		pane.setLayout(new BorderLayout());
 		//load main menu
-		pane.add(new MainMenu(this, 1000,600),BorderLayout.CENTER);
+		pane.add(new MainMenu(this, 1000,600));
 	}
 	
 	//==============main method=================

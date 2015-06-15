@@ -30,8 +30,8 @@ public class Player
         attack = 10;
         faceRight = true;
         status = 0;
-        x = 0;
-        y = 5;
+        x = 1;
+        y = 6;
         exp=0;
         foot = true;
         
@@ -137,7 +137,6 @@ public class Player
   //=============show method that draws player============
     public void show (Graphics g)
     {
-    	System.out.print("here");
     	if (status == 0)
         {
             if (faceRight == true)

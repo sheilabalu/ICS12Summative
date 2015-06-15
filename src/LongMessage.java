@@ -3,6 +3,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -115,33 +117,15 @@ public class LongMessage extends JPanel
 		   {
 	    	  	//Get rid of everything on screen
 	            game.pane.removeAll();
-	            //add Beginning message to main panel
-	            game.pane.add(new DrawBoard(1000,600),BorderLayout.CENTER);
+	            //add village Scene to main panel
+	            DrawBoard drawBoard= new DrawBoard(1000,600,game);
+	            game.pane.add(drawBoard);
+	            //requestFocus back to drawBoard so keylistener would work
+	            drawBoard.requestFocus();
 	            game.pack();
 		   }
 			   
 	   }
    }
-   
-   //==============DrawBoard Class=================
-  	public class DrawBoard extends JPanel
-	{
-  		public Village village= new Village ("Village",game);
-		public DrawBoard (int x, int y)
-		{
-			super ();
-			setPreferredSize(new Dimension(x,y));
-			addKeyListener(new PlayerListener(game.player,village));
-		}
-		
-		public void paintComponent (Graphics g)
-		{
-         //super.paintComponent(g);
-         village.show(g);
-         //game.player.show(g);
-		}
-	}
-
-   
-   
+      
 }
