@@ -127,6 +127,12 @@ public class Type
 		return regenRate;
 	}
 	
+	//==============getName method================
+	public String getName ()
+	{
+		return name;
+	}
+	
 	//=================getAttack method==============
 	public int getAttack()
 	{
@@ -140,7 +146,7 @@ public class Type
 	}
 	
 	//================loseHealth method=========
-	public int loseHealth (int loss)
+	public int loseHealth (int loss) //called when type is hurt by player
 	{
 		if (loss>armor)
 		health+=armor-loss;
@@ -151,18 +157,6 @@ public class Type
 			}
 		return 0;
 	}
-	
-	
-	
-	public int hurt (Player player)
-	{
-		if (player.getAttack()>armor)
-		{
-			health+=armor-player.getAttack();
-			return armor-player.getAttack();
-		}
-		return 0;
-	}	
 	
 	public void show (Graphics g)
 	{

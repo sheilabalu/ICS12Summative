@@ -36,7 +36,7 @@ public class StageTransition extends JPanel implements ActionListener
 		else
 		{
 			t.stop();
-         if (stageNum<4)
+         if (stageNum<9)
          {
 			//add new fight stage to panel
             DrawBoard drawBoard= new DrawBoard(1000,600,game,stageNum);
@@ -64,6 +64,13 @@ public class StageTransition extends JPanel implements ActionListener
 		   
 		g.fillRect(0,0,1000,currentY);
 		g.setColor(Color.WHITE);
-		g.drawString("STAGE "+stageNum, 400, currentY-300);
+		if (stageNum<8)
+		{
+			g.drawString("STAGE "+stageNum, 400, currentY-300);
+		}
+		else if (stageNum==8)
+		{
+			g.drawString("DRAGON'S DEN ", 320, currentY-300);
+		}
 	}
 }

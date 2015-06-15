@@ -54,6 +54,8 @@ public class Map
 		
 		if (path.equals("Map1"))
 		{
+			player.setY(5);
+			player.setX(0);
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,2,100));
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
@@ -61,7 +63,7 @@ public class Map
 		
 		else if (path.equals("Map2"))
 		{
-			player.setY(player.getY()+1);
+			player.setY(4);
 			player.setX(1);
 			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,5,4,100));
 			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,8,4,100));
@@ -70,11 +72,58 @@ public class Map
 		
 		else if (path.equals("Map3"))
 		{
-			player.setY(player.getY()+5);
+			player.setY(9);
 			player.setX(1);
-			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,5,9,100));
-			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,8,8,100));
-			monsters.add(new Type(			's', "Snail",			20, 0, 	0, 25,  20,12,7,100));
+			monsters.add(new Type(			's', "Snail",			30, 0, 	0, 23,  20,5,9,100));
+			monsters.add(new Type(			's', "Snail",			30, 0, 	0, 23,  20,8,8,100));
+			monsters.add(new Type(			's', "Snail",			30, 0, 	0, 23,  20,12,7,100));
+		}
+		
+		else if (path.equals("Map4"))
+		{
+			player.setY(4);
+			player.setX(1);
+			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,5,5,100));
+			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,8,7,100));
+			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,10,6,100));
+			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,12,5,100));
+		}
+		
+		else if (path.equals("Map5"))
+		{
+			player.setY(6);
+			player.setX(2);
+			monsters.add(new Type(		'p', "Penguin", 				60, 0, 	0, 34,  20,4,5,150));
+			monsters.add(new Type(		'p', "Penguin",  				60, 0, 	0, 34,  20,8,6,150));
+			monsters.add(new Type(			'P', "Pig",				65, 0, 	0, 35,  20,9,6,150));
+			monsters.add(new Type(			'P', "Pig",				65, 0, 	0, 35,  20,14,7,150));
+		}
+		
+		else if (path.equals("Map6"))
+		{
+			player.setY(6);
+			player.setX(1);
+			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,4,5,150));
+			monsters.add(new Type(	'z', "ZombieMushroom",	 				75, 0, 	0, 42,  20,8,5,150));
+			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,9,5,150));
+			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,14,6,150));
+		}
+		
+		else if (path.equals("Map7"))
+		{
+			player.setY(7);
+			player.setX(0);
+			monsters.add(new Type(			'm', "Mouse", 				90, 0, 	0, 48,  20,5,7,150));
+			monsters.add(new Type(			'm', "Mouse", 	 				90, 0, 	0, 48,  20,8,6,150));
+			monsters.add(new Type(			'm', "Mouse", 				90, 0, 	0, 48,  20,11,5,150));
+			monsters.add(new Type(			'm', "Mouse", 				90, 0, 	0, 48,  20,14,5,150));
+		}
+		
+		else if (path.equals("Map8"))
+		{
+			player.setY(6);
+			player.setX(0);
+			monsters.add(new Type(			'D', "Dragon", 				250, 0, 	0, 50,  20,5,8,150));
 		}
 	}
 	
@@ -165,7 +214,12 @@ public class Map
 		for (int k=0;k<monsters.size();k++)
 		{
 			Type type=monsters.get(k);
-			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&(player.getY()==type.getY()+1||player.getY()==type.getY()||player.getY()==type.getY()-1))
+			int distance;
+			if (type.getName().equals("Dragon"))
+				distance=3;
+			else 
+				distance =1;
+			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&(Math.abs(player.getY()-type.getY())<=distance))
 				{
 					player.loseHealth(monsters.get(k).getAttack());
 					if (player.getX()==type.getX()+1)
@@ -182,12 +236,17 @@ public class Map
 		for (int k=0;k<monsters.size();k++)
 		{
 			Type type= monsters.get(k);
+			int distance;
+			if (type.getName().equals("Dragon"))
+				distance=3;
+			else 
+				distance =1;
 			if (player.getFaceRight())
 			{
-			if ((type.getX()==player.getX()||type.getX()==player.getX()+1)&&(type.getY()==player.getY()||type.getY()==player.getY()+1||type.getY()==player.getY()-1))
+				if ((type.getX()==player.getX()||type.getX()==player.getX()+1)&&(Math.abs(player.getY()-type.getY())<=distance))
 				player.gainExp(type.loseHealth(player.getAttack()));
 			}
-			else if ((type.getX()==player.getX()||type.getX()==player.getX()-1)&&(type.getY()==player.getY()||type.getY()==player.getY()+1||type.getY()==player.getY()-1))
+			else if ((type.getX()==player.getX()||type.getX()==player.getX()-1)&&(Math.abs(player.getY()-type.getY())<=distance))
 				player.gainExp(type.loseHealth(player.getAttack()));
 		}
 			

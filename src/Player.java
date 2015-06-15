@@ -15,7 +15,7 @@ public class Player
     private boolean faceRight, foot, hasWeapon;
     public BufferedImage myImage;
     String path = null;
-    private final int[] expNeeded= new int [5];
+    private final int[] expNeeded= new int [10];
 
     //=============Constructor============
     public Player (String n)
@@ -75,7 +75,7 @@ public class Player
     {
     	exp+=gain;
     	//determines if user levels up or not
-    	if (level<5&&exp>=expNeeded[level-1])
+    	if (level<10&&exp>=expNeeded[level-1])
     	{
     		levelUp();
     	}
