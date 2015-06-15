@@ -11,6 +11,7 @@ public class PlayGame extends JFrame
 	public Container pane = getContentPane ();
 	public Player player = new Player("Peter");
 	
+	
 	  //==============constructor=================
 	public PlayGame ()
 	{

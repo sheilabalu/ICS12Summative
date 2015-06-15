@@ -32,7 +32,7 @@ public class LongMessage extends JPanel
       s=null;
       game=p;
       messageListener= new MessageListener();
-      t= new Timer (300,messageListener);
+      t= new Timer (10,messageListener);
       lineNum=0;
       message= new ArrayList<String>();
 	   

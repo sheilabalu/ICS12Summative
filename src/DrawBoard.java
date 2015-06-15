@@ -6,7 +6,7 @@ import javax.swing.*;
 //==============DrawBoard Class=================
   	public class DrawBoard extends JPanel implements KeyListener
 	{
-  		public Village map;
+  		public Map map;
   		public Player me;
   		public PlayGame game;
   		
@@ -14,8 +14,8 @@ import javax.swing.*;
 		{
 			//super ();
 			game=g;
-			map= new Village ("Village",game);
 			me=game.player;
+			map= new Map ("Map1",me);
 			setPreferredSize(new Dimension(x,y));
 			//System.out.println("KeyListener is added");
 			this.addKeyListener(this);
@@ -72,6 +72,7 @@ import javax.swing.*;
 			}
 			catch (ArrayIndexOutOfBoundsException error){}
 			repaint();
+			map.hitPlayer();
 		}
 
 		public void keyReleased(KeyEvent e) {}
@@ -86,6 +87,7 @@ import javax.swing.*;
 		{
          super.paintComponent(g);
          map.show(g);
+         map.showMonsters(g);
          game.player.show(g);
 		}
 		

@@ -12,12 +12,13 @@ public class Map
 	private Scanner s;
 	//	private ArrayList<Thread> Th = new ArrayList<Thread>(0);
 	//	private ArrayList<RunnableMonster> Rm = new ArrayList<RunnableMonster>(0);
-	private ArrayList<Life> monsters = new ArrayList<Life>(0);
-
+	private ArrayList<Type> monsters = new ArrayList<Type>();
+	private Player player;
 	private ArrayList<MonsterThread> MstrTh = new ArrayList<MonsterThread>(0);
 
-	public Map (String path)
+	public Map (String path,Player p)
 	{
+		player=p;
 		map= new char[12][20];
 		try
 		{
@@ -50,9 +51,16 @@ public class Map
 			System.out.println("monster list named \""+path+".txt\" not found.");
 		}
 		//nextWave();
+		
+		if (path.equals("Map1"))
+		{
+			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,5,2));
+			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,8,2));
+			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,9,2));
+		}
 	}
 
-	public boolean nextWave()
+	/*public boolean nextWave()
 	{
 		if(s.hasNextLine() == false)
 			return false;
@@ -67,7 +75,7 @@ public class Map
 			MstrTh.get(i).start();
 		}
 		return true;	
-	}
+	}*/
 
 	//method to draw map
 	public void show (Graphics g)
@@ -105,15 +113,42 @@ public class Map
 				}
 				g.drawImage(stageImage.parseImg(id),col*50, row*50, null);
 
-				for(int i = 0 ; i < monsters.size() ; i++){
-					monsters.get(i).drawImg(g);
-				}
+				//for(int i = 0 ; i < monsters.size() ; i++){
+					//monsters.get(i).drawImg(g);
+				//}
 			}
+			g.setColor(Color.BLACK);
+			player.showStats(g);
+			//hitPlayer();
 
 		}
 
 	}
-
+	
+	public void showMonsters (Graphics g)
+	{
+		for (int k=0;k<monsters.size();k++)
+		{
+			monsters.get(k).show(g);
+		}
+	}
+	
+	public void hitPlayer ()
+	{
+		for (int k=0;k<monsters.size();k++)
+		{
+			if ((player.getX()==monsters.get(k).getX()+1||player.getX()==monsters.get(k).getX()-1)&&player.getY()==monsters.get(k).getY()+1)
+				player.loseHealth(monsters.get(k).getAttack());
+		}
+		//return true;
+		//return false;
+	}
+	
+	public void hitMonster (int x,int y)
+	{
+		//if (player.getX()==x&&player.getY()==y)
+			
+	}
 	//method to retrieve image
 	public static BufferedImage getImage (String path)
 	{

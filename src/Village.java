@@ -9,9 +9,9 @@ public class Village extends Map
    public Village (String path,PlayGame playGame)
    {
       //use Map's constructor
-      super (path);
-      
+      super (path,playGame.player);
       game=playGame;
+
    }
    
    //==============show method that paints village=================

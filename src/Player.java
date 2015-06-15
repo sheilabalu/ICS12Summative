@@ -25,13 +25,13 @@ public class Player
         level=1;
         health = 50;
         maxHealth=50;
-        armor = 10;
+        armor = 5;
         regenRate = 5;
         attack = 10;
         faceRight = true;
         status = 0;
         x = 1;
-        y = 6;
+        y = 5;
         exp=0;
         foot = true;
         
@@ -55,6 +55,15 @@ public class Player
     		armor+=5;
     	}
     }
+    
+	//================loseHealth method=========
+	public void loseHealth (int loss)
+	{
+		if (loss>armor)
+		{
+			health+=armor-loss;
+		}
+	}
     
     //==========gainExp method=========
     public void gainExp (int gain)
@@ -133,6 +142,12 @@ public class Player
     {
         y--;
     }
+    
+  //=============getAttack method=========
+    public int getAttack ()
+    {
+    	return attack;
+    }
 
   //=============show method that draws player============
     public void show (Graphics g)
@@ -179,7 +194,12 @@ public class Player
         }
         else if (status == 2)
         {
-            path = "Player_Stab1";
+        	if (faceRight==true)
+        	{
+        		path = "Player_Stab1_Right";
+        	}
+        	else
+        		path="Player_Stab1_Left";
             path = "Weapon//" + path;
         }
     	System.out.println(path+" "+x+" "+y);
