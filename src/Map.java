@@ -58,7 +58,29 @@ public class Map
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
 		}
+		
+		else if (path.equals("Map2"))
+		{
+			player.setY(player.getY()+1);
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,3,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,3,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,3,100));
+		}
+		
+		else if (path.equals("Map3"))
+		{
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,2,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
+		}
 	}
+	
+	//================monsterNum method============
+	public int monsterNum ()
+	{
+		return monsters.size();
+	}
+    
 
 	/*public boolean nextWave()
 	{

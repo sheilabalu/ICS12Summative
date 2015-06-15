@@ -10,13 +10,15 @@ import javax.swing.*;
   		public Map map;
   		public Player me;
   		public PlayGame game;
+  		public int mapNum;
   		
-		public DrawBoard (int x, int y,PlayGame g)
+		public DrawBoard (int x, int y,PlayGame g, int mapLevel)
 		{
 			//super ();
 			game=g;
 			me=game.player;
-			map= new Map ("Map1",me);
+			mapNum=mapLevel;
+			map= new Map ("Map"+mapNum,me);
 			setPreferredSize(new Dimension(x,y));
 			//System.out.println("KeyListener is added");
 			this.addKeyListener(this);
@@ -82,6 +84,16 @@ import javax.swing.*;
 	            game.pane.removeAll();
 	            //add death message to main panel
 	            game.pane.add(new LongMessage("PlayerDeath",1000,600,game),BorderLayout.CENTER);
+	            game.pack();
+			}
+			
+			if (map.monsterNum()==0)
+			{
+				mapNum++;
+				//Get rid of everything on screen
+	            game.pane.removeAll();
+	            //add death message to main panel
+	            game.pane.add(new StageTransition(mapNum,1000,600,game),BorderLayout.CENTER);
 	            game.pack();
 			}
 		}

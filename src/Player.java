@@ -68,7 +68,8 @@ public class Player
 	{
 		return health;
 	}
-    
+	
+
     //==========gainExp method=========
     public void gainExp (int gain)
     {

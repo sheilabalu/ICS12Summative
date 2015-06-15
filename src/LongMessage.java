@@ -119,7 +119,7 @@ public class LongMessage extends JPanel
 			   if (event.equals("Intro"))
 			   {
 	            //add village Scene to main panel
-	            DrawBoard drawBoard= new DrawBoard(1000,600,game);
+	            DrawBoard drawBoard= new DrawBoard(1000,600,game,1);
 	            game.pane.add(drawBoard);
 	            //requestFocus back to drawBoard so keylistener would work
 	            drawBoard.requestFocus();
