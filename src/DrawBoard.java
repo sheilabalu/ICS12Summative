@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.*;
 
 //==============DrawBoard Class=================
@@ -56,8 +57,10 @@ import javax.swing.*;
 				me.moveDown();
 			}
 			else if (keyCode == 65)
-				me.setStatus(2);	    	
-
+			{
+				me.setStatus(2);
+				map.hitMonster();
+			}
 			try{
 				int gravity = me.getY();
 				gravity--;
@@ -73,6 +76,14 @@ import javax.swing.*;
 			catch (ArrayIndexOutOfBoundsException error){}
 			repaint();
 			map.hitPlayer();
+			if (me.getHealth()<=0)
+			{
+				//Get rid of everything on screen
+	            game.pane.removeAll();
+	            //add death message to main panel
+	            game.pane.add(new LongMessage("PlayerDeath",1000,600,game),BorderLayout.CENTER);
+	            game.pack();
+			}
 		}
 
 		public void keyReleased(KeyEvent e) {}

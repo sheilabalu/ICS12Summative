@@ -54,9 +54,9 @@ public class Map
 		
 		if (path.equals("Map1"))
 		{
-			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,5,2));
-			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,8,2));
-			monsters.add(new Type('S', "Slime", 			10, 0, 	0, 7,  20,9,2));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,2,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
 		}
 	}
 
@@ -127,9 +127,11 @@ public class Map
 	
 	public void showMonsters (Graphics g)
 	{
-		for (int k=0;k<monsters.size();k++)
+		for (int k=monsters.size()-1;k>=0;k--)
 		{
 			monsters.get(k).show(g);
+			if (monsters.get(k).getDeadGrahpics())
+				monsters.remove(k);
 		}
 	}
 	
@@ -137,16 +139,32 @@ public class Map
 	{
 		for (int k=0;k<monsters.size();k++)
 		{
-			if ((player.getX()==monsters.get(k).getX()+1||player.getX()==monsters.get(k).getX()-1)&&player.getY()==monsters.get(k).getY()+1)
-				player.loseHealth(monsters.get(k).getAttack());
+			Type type=monsters.get(k);
+			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&player.getY()==type.getY()+1)
+				{
+					player.loseHealth(monsters.get(k).getAttack());
+					if (player.getX()==type.getX()+1)
+							type.setfaceRight(true);
+					else
+							type.setfaceRight(false);
+							
+				}
 		}
-		//return true;
-		//return false;
 	}
 	
-	public void hitMonster (int x,int y)
+	public void hitMonster ()
 	{
-		//if (player.getX()==x&&player.getY()==y)
+		for (int k=0;k<monsters.size();k++)
+		{
+			Type type= monsters.get(k);
+			if (player.getFaceRight())
+			{
+			if ((type.getX()==player.getX()||type.getX()==player.getX()+1)&&(type.getY()==player.getY()||type.getY()==player.getY()+1||type.getY()==player.getY()-1))
+				player.gainExp(type.loseHealth(player.getAttack()));
+			}
+			else if ((type.getX()==player.getX()||type.getX()==player.getX()-1)&&(type.getY()==player.getY()||type.getY()==player.getY()+1||type.getY()==player.getY()-1))
+				player.gainExp(type.loseHealth(player.getAttack()));
+		}
 			
 	}
 	//method to retrieve image

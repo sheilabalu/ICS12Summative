@@ -3,8 +3,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -13,18 +11,18 @@ public class LongMessage extends JPanel
    private Scanner s;
    private Timer t;
    private int lineNum;
-   private Graphics g;
    private JButton control;
    private MessageListener messageListener;
    private ArrayList<String> message;
    private PlayGame game;
+   private String event;
    
    //===========constructor=========
     public LongMessage (String path,int x, int y, PlayGame p) 
    {
 	   //inherit super's constructor
 		super ();
-		
+	
 		//set size of panel
 		setPreferredSize(new Dimension(x,y));
 	
@@ -32,11 +30,12 @@ public class LongMessage extends JPanel
       s=null;
       game=p;
       messageListener= new MessageListener();
-      t= new Timer (10,messageListener);
+      t= new Timer (500,messageListener);
       lineNum=0;
       message= new ArrayList<String>();
-	   
-     //use border layout
+	  event=path; 
+     
+      //use border layout
 	 setLayout(new BorderLayout());
 	 //create control button
 	 control= new JButton ("Start");
@@ -101,7 +100,7 @@ public class LongMessage extends JPanel
 			   //clear ArrayList
 			   message.clear();
 			   //change text of control button
-			   control.setText("Continue");
+			   control.setText("Okay");
 		   }
 	   }
    }
@@ -113,16 +112,24 @@ public class LongMessage extends JPanel
 	   {
 		   if (e.getActionCommand().equals("Start"))
 			   t.start(); //start timer
-		   else if (e.getActionCommand().equals("Continue"))
+		   else if (e.getActionCommand().equals("Okay"))
 		   {
-	    	  	//Get rid of everything on screen
+			   //Get rid of everything on screen
 	            game.pane.removeAll();
+			   if (event.equals("Intro"))
+			   {
 	            //add village Scene to main panel
 	            DrawBoard drawBoard= new DrawBoard(1000,600,game);
 	            game.pane.add(drawBoard);
 	            //requestFocus back to drawBoard so keylistener would work
 	            drawBoard.requestFocus();
-	            game.pack();
+	            game.pack ();
+			   }
+			   else if (event.equals("PlayerDeath")||event.equals("PlayerWin"))
+			   {
+				   game.setVisible(false); //you can't see me!
+				   game.dispose(); //goodbye!
+			   }
 		   }
 			   
 	   }

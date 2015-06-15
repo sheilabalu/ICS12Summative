@@ -29,13 +29,13 @@ public class Type
 	
 	private final char chIdentifier;
 	private int health,x,y;
-	private final int attack, size;
+	private final int attack, size,exp;
 	private final int armor, regenRate;
 	private final String name;
-	private boolean faceRight;
+	private boolean faceRight,isAlive,deadGraphics;
 
 	
-	public Type(char c, String n, int hp, int arm, int reg, int atk, int s,int x_Value,int y_Value)
+	public Type(char c, String n, int hp, int arm, int reg, int atk, int s,int x_Value,int y_Value,int experience)
 	{
 		chIdentifier = c;
 		name = n;
@@ -47,6 +47,9 @@ public class Type
 		x=x_Value;
 		y=y_Value;
 		faceRight=false;
+		exp=experience;
+		isAlive=true;
+		deadGraphics=false;
 	}
 	
 	
@@ -82,10 +85,28 @@ public class Type
 		return y;
 	}
 	
+	//==============getDeadGraphics method==============
+	public boolean getDeadGrahpics ()
+	{
+		return deadGraphics;
+	}
+	
+	//==============getExp method=================
+	public int getExp ()
+	{
+		return exp;
+	}
+	
 	//============getFaceRight method===========
 	public boolean getfaceRight ()
 	{
 		return faceRight;
+	}
+	
+	//===========setfaceRight method===========
+	public void setfaceRight (boolean right)
+	{
+		faceRight=right;
 	}
 	
 	//============getHealth method==============
@@ -119,10 +140,16 @@ public class Type
 	}
 	
 	//================loseHealth method=========
-	public void loseHealth (int loss)
+	public int loseHealth (int loss)
 	{
 		if (loss>armor)
 		health+=armor-loss;
+		if(health<=0)
+			{
+				isAlive=false;
+				return exp;
+			}
+		return 0;
 	}
 	
 	
@@ -139,10 +166,18 @@ public class Type
 	
 	public void show (Graphics g)
 	{
-		if (faceRight)
-			g.drawImage(PlayGame.getImage("Monsters//"+name+"_Move_Right.png"), x*50,600-y*50,null);
-		else
-			g.drawImage(PlayGame.getImage("Monsters//"+name+"_Move_Left.png"), x*50,600-y*50,null);	
+		if (isAlive)
+		{
+			if (faceRight)
+				g.drawImage(PlayGame.getImage("Monsters//"+name+"_Move_Right.png"), x*50,600-y*50,null);
+			else
+				g.drawImage(PlayGame.getImage("Monsters//"+name+"_Move_Left.png"), x*50,600-y*50,null);	
+		}
+		else 
+		{
+			g.drawImage(PlayGame.getImage("Monsters//"+name+"_Die.png"), x*50,600-y*50,null);
+			deadGraphics=true;
+		}
 	}
 
 }

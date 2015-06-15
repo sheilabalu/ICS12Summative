@@ -34,7 +34,7 @@ public class Player
         y = 5;
         exp=0;
         foot = true;
-        
+       
         //set experience needed to level up
         expNeeded[0]=200;
         for (int k=1;k<expNeeded.length;k++)
@@ -44,37 +44,52 @@ public class Player
     //=========levelUp method=========
     public void levelUp ()
     {
-    	//if not at max level and has enough experience
-    	if (level<5&&exp>=expNeeded[level-1])
-    	{
     		level++;
     		exp=0;
     		maxHealth+=20;
     		health=maxHealth;
     		attack+=10;
     		armor+=5;
-    	}
     }
     
 	//================loseHealth method=========
 	public void loseHealth (int loss)
 	{
+		//if monster's attack is greater than player's armor
 		if (loss>armor)
 		{
+			//lose health
 			health+=armor-loss;
 		}
+	}
+	
+	//================getHealth method===============
+	public int getHealth ()
+	{
+		return health;
 	}
     
     //==========gainExp method=========
     public void gainExp (int gain)
     {
     	exp+=gain;
+    	//determines if user levels up or not
+    	if (level<5&&exp>=expNeeded[level-1])
+    	{
+    		levelUp();
+    	}
     }
 
   //=============getFoot method============
     public boolean getFoot ()
     {
         return foot;
+    }
+    
+    //=============getFaceRight method============
+    public boolean getFaceRight ()
+    {
+    	return faceRight;
     }
 
   //=============setFaceRight method============
@@ -215,20 +230,20 @@ public class Player
     	
     	Font text = new Font ("SansSerif", Font.BOLD, 16);
  	    g.setFont(text);
-    	g.drawString("Name: "+name, 10, 16);
-		g.drawString("Health: "+health+"/"+maxHealth, 120, 30);
-		g.drawString("Exp: "+exp+"/"+expNeeded[level-1], 120, 80);
-		g.fillRect(118,43,154,14);
-		g.fillRect(118, 93, 154, 14);
-		g.fillRect(120+healthBar,45, 150-healthBar, 10);
-		g.fillRect(120+expBar, 95, 150-expBar, 10);
+    	g.drawString("Level "+level+" Warrior:"+name, 10, 16);
+		g.drawString("Health: "+health+"/"+maxHealth, 120, 35);
+		g.drawString("Exp: "+exp+"/"+expNeeded[level-1], 120, 85);
+		g.fillRect(118,48,154,14);
+		g.fillRect(118, 98, 154, 14);
+		g.fillRect(120+healthBar,50, 150-healthBar, 10);
+		g.fillRect(120+expBar, 100, 150-expBar, 10);
 		
 		g.setColor(Color.RED);
-		g.fillRect(120, 45,healthBar, 10);
+		g.fillRect(120, 50,healthBar, 10);
 		g.setColor(Color.YELLOW);
-		g.fillRect(120, 95, expBar, 10);
+		g.fillRect(120, 100, expBar, 10);
 		
-		g.drawImage(PlayGame.getImage("Player//profile.png"), 10, 20, null);
+		g.drawImage(PlayGame.getImage("Player//profile.png"), 10, 25, null);
     }
 
 }
