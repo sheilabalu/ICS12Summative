@@ -62,9 +62,10 @@ public class Map
 		else if (path.equals("Map2"))
 		{
 			player.setY(player.getY()+1);
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,3,100));
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,3,100));
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,3,100));
+			player.setX(1);
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,5,3,100));
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,8,3,100));
+			monsters.add(new Type(		'M', "Mushroom",			20, 3, 	0, 15,  20,9,3,100));
 		}
 		
 		else if (path.equals("Map3"))
