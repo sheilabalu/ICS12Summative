@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+//assists in drawing map
 public enum stageImage {
 	SPACE("Space"),
 	GRASSFLOOR("GrassFloor"),
@@ -13,6 +13,7 @@ public enum stageImage {
 	
 	private BufferedImage img;
 	
+	//===========constructor===============
 	private stageImage (String name)
 	{
 		try {
@@ -21,7 +22,9 @@ public enum stageImage {
 			e.printStackTrace();
 		}
 	}
-	public static BufferedImage parseImg(char c)
+	
+	//==============parseImg method==================
+	public static BufferedImage parseImg(char c)  //draws based on char given in Map class
 	{
 		switch(c){
 		case ' ':	return SPACE.getImg();

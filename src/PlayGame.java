@@ -1,15 +1,20 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.io.*;
-import java.awt.event.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
 
 @SuppressWarnings("serial")
 public class PlayGame extends JFrame
 {
 	public Container pane = getContentPane ();
 	public Player player = new Player("Peter");
+	
 	
 	
 	  //==============constructor=================
@@ -21,6 +26,7 @@ public class PlayGame extends JFrame
 		pane.setLayout(new BorderLayout());
 		//load main menu
 		pane.add(new MainMenu(this, 1000,600));
+		//initialize music thread
 	}
 	
 	//==============main method=================
@@ -48,21 +54,23 @@ public class PlayGame extends JFrame
 		}
 		return image;
 	}
-}
-
-/*private void play()
-{
-	// check if player won or lost and display appropriate message
-	waves();
-}
-public void waves()
-{
-	while(map.nextWave()) // return if player health <= 0
-	{
-
-
+	
+	//=============getAudioClip which reads AudioClip (music)==========
+	public static AudioClip getAudioClip(String fileName) {
+		URL address = null;
+		try {
+			address = new URL("file:" + System.getProperty("user.dir") + "\\" + fileName);
+			System.out.println("file:" + System.getProperty("user.dir") + "\\" + fileName);
+		} catch (Exception e) {
+		}
+		
+		return Applet.newAudioClip(address);
 	}
-}*/
+	
+	
+}
+
+
 
 
 

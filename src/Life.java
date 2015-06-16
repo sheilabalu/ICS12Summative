@@ -1,6 +1,6 @@
 import java.awt.Graphics;
 
-
+//vestigial class that does nothing
 public class Life
 {
 	/*private int health, attack, x, y, s, pic = 0;

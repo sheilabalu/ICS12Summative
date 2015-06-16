@@ -51,17 +51,6 @@ public class Player
     		attack+=10;
     		armor+=5;
     }
-    
-	//================loseHealth method=========
-	public void loseHealth (int loss)
-	{
-		//if monster's attack is greater than player's armor
-		if (loss>armor)
-		{
-			//lose health
-			health+=armor-loss;
-		}
-	}
 	
 	//================getHealth method===============
 	public int getHealth ()
@@ -164,15 +153,24 @@ public class Player
     {
     	return attack;
     }
+    
+    //============loseHealth method===========
+    public void loseHealth (int loss)
+    {
+    	if (loss>armor) //if monster's attack is greater than player's armor
+    	{
+    		health+=armor-loss;
+    	}
+    }
 
   //=============show method that draws player============
     public void show (Graphics g)
     {
-    	if (status == 0)
+    	if (status == 0) //if standing
         {
-            if (faceRight == true)
+            if (faceRight == true) 
             {
-                path = "Player_Stand_Right"; //fix
+                path = "Player_Stand_Right"; 
             }
 
             else if (faceRight == false)
@@ -181,11 +179,11 @@ public class Player
             }
             path = "No Weapon//" + path;
         }
-        else if (status == 1)
+        else if (status == 1) //if walking
         {
             if (faceRight == true)
             {
-                if (foot == true)
+                if (foot == true) //is foot out
                 {
                     path = "Player_Walk1_Right";
                 }
@@ -195,7 +193,7 @@ public class Player
                 }
             }
 
-            else if (faceRight == false)
+            else if (faceRight == false) 
             {
                 if (foot == true)
                 {
@@ -208,7 +206,7 @@ public class Player
             }
             path = "No Weapon//" + path;
         }
-        else if (status == 2)
+        else if (status == 2) //if attacking
         {
         	if (faceRight==true)
         	{
@@ -218,7 +216,6 @@ public class Player
         		path="Player_Stab1_Left";
             path = "Weapon//" + path;
         }
-    	System.out.println(path+" "+x+" "+y);
         g.drawImage (PlayGame.getImage ("Player//"+path+".png"), x * 50, 600 - (y*50), null);
     }
     
@@ -226,24 +223,28 @@ public class Player
     public void showStats (Graphics g)
     {
     	int healthBar, expBar;
+    	//determines length of health and exp bar
     	healthBar=(int)(1.0*health/maxHealth*150);
     	expBar= (int)(1.0*exp/expNeeded[level-1]*150);
     	
     	Font text = new Font ("SansSerif", Font.BOLD, 16);
  	    g.setFont(text);
+ 	    //draw player info
     	g.drawString("Level "+level+" Warrior:"+name, 10, 16);
 		g.drawString("Health: "+health+"/"+maxHealth, 120, 35);
 		g.drawString("Exp: "+exp+"/"+expNeeded[level-1], 120, 85);
+		//outline for exp and hp bar
 		g.fillRect(118,48,154,14);
 		g.fillRect(118, 98, 154, 14);
+		//fill hp bar and exp bar
 		g.fillRect(120+healthBar,50, 150-healthBar, 10);
 		g.fillRect(120+expBar, 100, 150-expBar, 10);
-		
 		g.setColor(Color.RED);
 		g.fillRect(120, 50,healthBar, 10);
 		g.setColor(Color.YELLOW);
 		g.fillRect(120, 100, expBar, 10);
 		
+		//draws profile pic of player
 		g.drawImage(PlayGame.getImage("Player//profile.png"), 10, 25, null);
     }
 

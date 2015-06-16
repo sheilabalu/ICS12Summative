@@ -1,4 +1,4 @@
-
+//not fully developed
 public class MonsterThread extends Thread {
 
 	public MonsterThread(Life monster) {

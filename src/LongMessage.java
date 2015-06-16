@@ -16,6 +16,7 @@ public class LongMessage extends JPanel
    private ArrayList<String> message;
    private PlayGame game;
    private String event;
+   private Sound music;
    
    //===========constructor=========
     public LongMessage (String path,int x, int y, PlayGame p) 
@@ -34,6 +35,18 @@ public class LongMessage extends JPanel
       lineNum=0;
       message= new ArrayList<String>();
 	  event=path; 
+	  
+	  //plays sad music if player has died
+	  if (event.equals("PlayerDeath"))
+	  {
+		  music=new Sound("SadMusic.wav");
+		  music.start();
+	  }
+	  else if (event.equals("PlayerWin"))
+	  {
+		  music=new Sound ("happyMusic.wav");
+		  music.start();
+	  }
      
       //use border layout
 	 setLayout(new BorderLayout());
@@ -118,10 +131,7 @@ public class LongMessage extends JPanel
 	            game.pane.removeAll();
 			   if (event.equals("Intro"))
 			   {
-	            //add village Scene to main panel
-				  // game.player.levelUp();
-				  // game.player.levelUp();
-				  // game.player.levelUp();
+	            //add stage 1 to main panel
 	            DrawBoard drawBoard= new DrawBoard(1000,600,game,1);
 	            game.pane.add(drawBoard);
 	            //requestFocus back to drawBoard so keylistener would work
@@ -130,6 +140,7 @@ public class LongMessage extends JPanel
 			   }
 			   else if (event.equals("PlayerDeath")||event.equals("PlayerWin"))
 			   {
+				   music.stopMusic();
 				   game.setVisible(false); //you can't see me!
 				   game.dispose(); //goodbye!
 			   }

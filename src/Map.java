@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;
+
 import javax.imageio.ImageIO;
 
 public class Map
@@ -10,8 +11,6 @@ public class Map
 	private char[][] map;
 	private BufferedImage mapImage;
 	private Scanner s;
-	//	private ArrayList<Thread> Th = new ArrayList<Thread>(0);
-	//	private ArrayList<RunnableMonster> Rm = new ArrayList<RunnableMonster>(0);
 	private ArrayList<Type> monsters = new ArrayList<Type>();
 	private Player player;
 	private ArrayList<MonsterThread> MstrTh = new ArrayList<MonsterThread>(0);
@@ -45,13 +44,15 @@ public class Map
 		}
 		catch (Exception e){}
 
+		//try to read monsters, not fully developed yet
 		try{
 			s = new Scanner(new File("Mtxt/"+path+".txt"));
 		}catch(FileNotFoundException e){
 			System.out.println("monster list named \""+path+".txt\" not found.");
 		}
-		//nextWave();
+
 		
+		//assigns monster distribution 
 		if (path.equals("Map1"))
 		{
 			player.setY(5);
@@ -151,7 +152,7 @@ public class Map
 		return true;	
 	}*/
 
-	//method to draw map
+	//============show method that draws map===========
 	public void show (Graphics g)
 	{
 		String path=null;
@@ -187,28 +188,26 @@ public class Map
 				}
 				g.drawImage(stageImage.parseImg(id),col*50, row*50, null);
 
-				//for(int i = 0 ; i < monsters.size() ; i++){
-					//monsters.get(i).drawImg(g);
-				//}
 			}
 			g.setColor(Color.BLACK);
 			player.showStats(g);
-			//hitPlayer();
-
 		}
 
 	}
 	
+	//============showMonsters method that displays monsters===========
 	public void showMonsters (Graphics g)
 	{
 		for (int k=monsters.size()-1;k>=0;k--)
 		{
 			monsters.get(k).show(g);
+			//if monster is dead and has shown deadGrahphics
 			if (monsters.get(k).getDeadGrahpics())
-				monsters.remove(k);
+				monsters.remove(k); //remove said monster
 		}
 	}
 	
+	//============hitPlayer method where monsters attack player===========
 	public void hitPlayer ()
 	{
 		for (int k=0;k<monsters.size();k++)
@@ -219,20 +218,23 @@ public class Map
 				distance=3;
 			else 
 				distance =1;
+			//determines if monster is in close proximity to player
 			if ((player.getX()==type.getX()+1||player.getX()==type.getX()-1||player.getX()==type.getX())&&(Math.abs(player.getY()-type.getY())<=distance))
 				{
-					player.loseHealth(monsters.get(k).getAttack());
+					player.loseHealth(monsters.get(k).getAttack()); //player gets hurt
 					if (player.getX()==type.getX()+1)
-							type.setfaceRight(true);
+							type.setfaceRight(true); //set orientation based on player
 					else
-							type.setfaceRight(false);
+							type.setfaceRight(false); //set orientation based on player
 							
 				}
 		}
 	}
 	
+	//============hitMonster method where player hits monster===========
 	public void hitMonster ()
 	{
+		//goes through monster array
 		for (int k=0;k<monsters.size();k++)
 		{
 			Type type= monsters.get(k);
@@ -243,11 +245,18 @@ public class Map
 				distance =1;
 			if (player.getFaceRight())
 			{
+				//determines if monster gets hit
 				if ((type.getX()==player.getX()||type.getX()==player.getX()+1)&&(Math.abs(player.getY()-type.getY())<=distance))
-				player.gainExp(type.loseHealth(player.getAttack()));
+				{
+					player.gainExp(type.loseHealth(player.getAttack()));
+					
+				}
 			}
+			//determines if monster gets hit
 			else if ((type.getX()==player.getX()||type.getX()==player.getX()-1)&&(Math.abs(player.getY()-type.getY())<=distance))
-				player.gainExp(type.loseHealth(player.getAttack()));
+				{
+					player.gainExp(type.loseHealth(player.getAttack()));
+				}
 		}
 			
 	}

@@ -1,4 +1,4 @@
-
+//not fully developed
 public class RunnableMonster implements Runnable 
 {
 	public RunnableMonster(Life monster) {

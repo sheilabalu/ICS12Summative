@@ -1,6 +1,6 @@
 import java.awt.*;
 
-
+//not fully developed
 public class Village extends Map
 {
 	private PlayGame game;
