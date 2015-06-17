@@ -3,3 +3,8 @@ It has been many years since any adult dragons terrorized the town.
 The presence of dragons is becoming more and more mythical to the villagers. 
 The young people of the village became skeptical of the elders¡¯ tales of dragons.
 However, this all changed when a black dragon came to the village¡­
+Young challenger, your job is to kill the dragon and the dragon's minions. 
+
+Instructions:
+Use arrow keys to move
+Press "A" to attack

@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
 public class LongMessage extends JPanel 
@@ -30,7 +29,7 @@ public class LongMessage extends JPanel
       //initialize variables
       s=null;
       game=p;
-      messageListener= new MessageListener();
+      messageListener= new MessageListener(this);
       t= new Timer (500,messageListener);
       lineNum=0;
       message= new ArrayList<String>();
@@ -51,8 +50,8 @@ public class LongMessage extends JPanel
       //use border layout
 	 setLayout(new BorderLayout());
 	 //create control button
-	 control= new JButton ("Start");
-	 add(control,BorderLayout.SOUTH);
+	 control= new JButton ("Okay");
+	 
 	 //add actionlistener to control button
      control.addActionListener(new BtnListener());
       
@@ -66,7 +65,7 @@ public class LongMessage extends JPanel
     	  System.out.println(path+".txt not found");
 	  }
 
-
+	  t.start();
    }
    
  //==============paintComponent method that paints text=================
@@ -94,6 +93,13 @@ public class LongMessage extends JPanel
  //==============MessageListener Class=================
    public class MessageListener implements ActionListener
    {
+	   public LongMessage mes;
+	   
+	   public MessageListener (LongMessage m)
+	   {
+		   super(); //inherit superclass constructor
+		   mes=m;
+	   }
 	   public void actionPerformed (ActionEvent e)
 	   {
 		   //Scanner s has more lines to read
@@ -110,10 +116,14 @@ public class LongMessage extends JPanel
 		   {
 			   //stop timer
 			   t.stop();
+			   
+			   //add okay button
+			   mes.add(control,BorderLayout.SOUTH);
+			   mes.validate();
+			   mes.game.pack();
+			   
 			   //clear ArrayList
 			   message.clear();
-			   //change text of control button
-			   control.setText("Okay");
 		   }
 	   }
    }
@@ -123,9 +133,7 @@ public class LongMessage extends JPanel
    {
 	   public void actionPerformed (ActionEvent e)
 	   {
-		   if (e.getActionCommand().equals("Start"))
-			   t.start(); //start timer
-		   else if (e.getActionCommand().equals("Okay"))
+		   if (e.getActionCommand().equals("Okay"))
 		   {
 			   //Get rid of everything on screen
 	            game.pane.removeAll();
@@ -136,6 +144,9 @@ public class LongMessage extends JPanel
 	            game.pane.add(drawBoard);
 	            //requestFocus back to drawBoard so keylistener would work
 	            drawBoard.requestFocus();
+	            
+	            ///stops backGound music
+	            game.s.stopMusic();
 	            game.pack ();
 			   }
 			   else if (event.equals("PlayerDeath")||event.equals("PlayerWin"))

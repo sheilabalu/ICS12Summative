@@ -57,7 +57,7 @@ public class Map
 		{
 			player.setY(5);
 			player.setX(0);
-			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,5,2,100));
+			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,12,2,100));
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,8,2,100));
 			monsters.add(new Type('S', "Slime", 			20, 0, 	0, 7,  20,9,2,100));
 		}
@@ -84,20 +84,20 @@ public class Map
 		{
 			player.setY(4);
 			player.setX(1);
-			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,5,5,100));
-			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,8,7,100));
-			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,10,6,100));
-			monsters.add(new Type(			'g', "Ghost", 				50, 0, 	0, 29,  20,12,5,100));
+			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,5,5,100));
+			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,8,7,100));
+			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,10,6,100));
+			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,12,5,100));
 		}
 		
 		else if (path.equals("Map5"))
 		{
 			player.setY(6);
 			player.setX(2);
-			monsters.add(new Type(		'p', "Penguin", 				60, 0, 	0, 34,  20,4,5,150));
-			monsters.add(new Type(		'p', "Penguin",  				60, 0, 	0, 34,  20,8,6,150));
+			monsters.add(new Type(		'p', "Penguin", 				60, 0, 	0, 35,  20,4,5,150));
+			monsters.add(new Type(		'p', "Penguin",  				60, 0, 	0, 35,  20,8,6,150));
 			monsters.add(new Type(			'P', "Pig",				65, 0, 	0, 35,  20,9,6,150));
-			monsters.add(new Type(			'P', "Pig",				65, 0, 	0, 35,  20,14,7,150));
+			monsters.add(new Type(			'P', "Pig",				65, 0, 	0, 35,  20,17,8,150));
 		}
 		
 		else if (path.equals("Map6"))
@@ -107,7 +107,7 @@ public class Map
 			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,4,5,150));
 			monsters.add(new Type(	'z', "ZombieMushroom",	 				75, 0, 	0, 42,  20,8,5,150));
 			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,9,5,150));
-			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,14,6,150));
+			monsters.add(new Type(	'z', "ZombieMushroom",				75, 0, 	0, 42,  20,16,6,150));
 		}
 		
 		else if (path.equals("Map7"))
@@ -132,6 +132,12 @@ public class Map
 	public int monsterNum ()
 	{
 		return monsters.size();
+	}
+	
+	//================getMonster method=============
+	public ArrayList<Type> getMonster ()
+	{
+		return monsters;
 	}
     
 

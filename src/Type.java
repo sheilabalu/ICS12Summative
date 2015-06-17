@@ -46,6 +46,18 @@ public class Type
 		return y;
 	}
 	
+	//==========setX method===============
+	public void setX (int newX)
+	{
+		x=newX;
+	}
+	
+	//==========setY method===============
+	public void setY(int newY)
+	{
+		y=newY;
+	}
+	
 	//==============getDeadGraphics method==============
 	public boolean getDeadGrahpics ()
 	{

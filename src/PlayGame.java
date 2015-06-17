@@ -14,7 +14,7 @@ public class PlayGame extends JFrame
 {
 	public Container pane = getContentPane ();
 	public Player player = new Player("Peter");
-	
+	public Sound s;
 	
 	
 	  //==============constructor=================
@@ -26,7 +26,6 @@ public class PlayGame extends JFrame
 		pane.setLayout(new BorderLayout());
 		//load main menu
 		pane.add(new MainMenu(this, 1000,600));
-		//initialize music thread
 	}
 	
 	//==============main method=================
@@ -60,7 +59,6 @@ public class PlayGame extends JFrame
 		URL address = null;
 		try {
 			address = new URL("file:" + System.getProperty("user.dir") + "\\" + fileName);
-			System.out.println("file:" + System.getProperty("user.dir") + "\\" + fileName);
 		} catch (Exception e) {
 		}
 		

@@ -5,7 +5,7 @@ import javax.swing.*;
 public class MainMenu extends JPanel 
 {
    private PlayGame game;
-   private Sound s;
+   public Sound s;
 
    //==============constructor=================
    public MainMenu (PlayGame g, int x, int y)
@@ -27,6 +27,7 @@ public class MainMenu extends JPanel
       start.addActionListener(new BtnListener());
       //load background music
 	  s= new Sound("titleMusic.wav");
+	  game.s=s;
 	  s.start();
    }
    
@@ -55,8 +56,6 @@ public class MainMenu extends JPanel
    {
       public void actionPerformed (ActionEvent e)
       {
-    	  	//stops backGound music
-    	  	s.stopMusic();
     	  	//Get rid of everything on screen
             game.pane.removeAll();
             //add Beginning message to main panel

@@ -11,6 +11,7 @@ import javax.swing.*;
   		public Player me;
   		public PlayGame game;
   		public int mapNum;
+  		public MonsterAnimator animate;
   		
   		//=============constructor==================
 		public DrawBoard (int x, int y,PlayGame g, int mapLevel)
@@ -28,7 +29,9 @@ import javax.swing.*;
 			 this.setFocusable(true);
 	         this.requestFocusInWindow();
 	         requestFocus();
-		}
+	         animate= new MonsterAnimator (this);	
+	         animate.start();
+	    }
 		
 		//============keyTyped method===========
 		public void keyTyped(KeyEvent e) {}
@@ -81,13 +84,12 @@ import javax.swing.*;
 				{
 					gravity--;
 				}
-
-				System.out.println(me.getX()+" , "+ me.getY() + " , " + gravity);
+				
 				me.setY(gravity+2);
 			}
 			catch (ArrayIndexOutOfBoundsException error){}
 			repaint();
-			map.hitPlayer(); //monsters hit player
+			
 			if (me.getHealth()<=0) //if player dies
 			{
 				//Get rid of everything on screen
@@ -100,6 +102,8 @@ import javax.swing.*;
 			if (map.monsterNum()==0) //if all monsters in stage is defeated
 			{
 				mapNum++;
+				//change player position to stand
+				me.setStatus(0);
 				//Get rid of everything on screen
 	            game.pane.removeAll();
 	            //load next stage
