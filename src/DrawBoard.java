@@ -88,6 +88,7 @@ import javax.swing.*;
 				me.setY(gravity+2);
 			}
 			catch (ArrayIndexOutOfBoundsException error){}
+			me.setDamage(0); //reset damage
 			repaint();
 			
 			if (me.getHealth()<=0) //if player dies
@@ -104,6 +105,8 @@ import javax.swing.*;
 				mapNum++;
 				//change player position to stand
 				me.setStatus(0);
+				//reset damage
+				me.setDamage(0);
 				//Get rid of everything on screen
 	            game.pane.removeAll();
 	            //load next stage

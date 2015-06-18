@@ -9,11 +9,9 @@ import javax.imageio.ImageIO;
 public class Map
 {
 	private char[][] map;
-	private BufferedImage mapImage;
-	private Scanner s;
 	private ArrayList<Type> monsters = new ArrayList<Type>();
 	private Player player;
-	private ArrayList<MonsterThread> MstrTh = new ArrayList<MonsterThread>(0);
+	private Scanner s;
 
 	public Map (String path,Player p)
 	{
@@ -84,7 +82,7 @@ public class Map
 		{
 			player.setY(4);
 			player.setX(1);
-			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,5,5,100));
+			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,4,5,100));
 			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,8,7,100));
 			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,10,6,100));
 			monsters.add(new Type(			'g', "Ghost", 				45, 0, 	0, 25,  20,12,5,100));
@@ -141,27 +139,9 @@ public class Map
 	}
     
 
-	/*public boolean nextWave()
-	{
-		if(s.hasNextLine() == false)
-			return false;
-		String mStr = s.nextLine();
-
-		for(int i = 0 ; i < mStr.length() ; i++){
-			monsters.add(new Life(mStr.charAt(i), 975 + 50*i, 545));
-			//			Rm.add(new RunnableMonster(monsters.get(i)));
-			//			Th.add(new Thread(Rm.get(i)));
-			//			Th.get(i).start();
-			MstrTh.add(new MonsterThread(monsters.get(i)));
-			MstrTh.get(i).start();
-		}
-		return true;	
-	}*/
-
 	//============show method that draws map===========
 	public void show (Graphics g)
 	{
-		String path=null;
 		//goes through array
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1000, 600);
@@ -193,10 +173,12 @@ public class Map
 						id = 'n';
 				}
 				g.drawImage(stageImage.parseImg(id),col*50, row*50, null);
+				
 
 			}
 			g.setColor(Color.BLACK);
 			player.showStats(g);
+			
 		}
 
 	}
@@ -282,6 +264,7 @@ public class Map
 		return image;
 	}
 
+	//==============getMap method=============
 	public char getMap(int y, int x) 
 	{
 		return map[y][x];

@@ -9,8 +9,8 @@ import javax.swing.*;
 
 public class Player
 {
-    private int health, attack, x, y, status,level,exp,maxHealth; //0=standing, 1=walking, 2=attacking, 3=jumping
-    private double armor, regenRate;
+    private int health, attack, x, y, status,level,exp,maxHealth, damage; //0=standing, 1=walking, 2=attacking, 3=jumping
+    private int armor, regenRate;
     private String name;
     private boolean faceRight, foot, hasWeapon;
     public BufferedImage myImage;
@@ -34,7 +34,8 @@ public class Player
         y = 5;
         exp=0;
         foot = true;
-       
+        damage=0;
+        
         //set experience needed to level up
         expNeeded[0]=200;
         for (int k=1;k<expNeeded.length;k++)
@@ -50,6 +51,8 @@ public class Player
     		health=maxHealth;
     		attack+=10;
     		armor+=5;
+    		Sound effect= new Sound("LevelUp.wav");
+    		effect.start();
     }
 	
 	//================getHealth method===============
@@ -74,6 +77,12 @@ public class Player
     public boolean getFoot ()
     {
         return foot;
+    }
+    
+    //===============setDamage method============
+    public void setDamage (int d)
+    {
+    	damage=d;
     }
     
     //=============getFaceRight method============
@@ -160,7 +169,10 @@ public class Player
     	if (loss>armor) //if monster's attack is greater than player's armor
     	{
     		health+=armor-loss;
+    		damage=armor-loss;
     	}
+    	else
+    		damage=0;
     }
 
   //=============show method that draws player============
@@ -217,6 +229,13 @@ public class Player
             path = "Weapon//" + path;
         }
         g.drawImage (PlayGame.getImage ("Player//"+path+".png"), x * 50, 600 - (y*50), null);
+        if (damage!=0)
+        {
+        	g.setColor(Color.RED);
+        	Font text = new Font ("SansSerif", Font.BOLD, 20);
+     	   g.setFont(text);
+        	g.drawString (""+damage,x*50+30,600-(y*50+20));
+        }
     }
     
     //==============showStats method================

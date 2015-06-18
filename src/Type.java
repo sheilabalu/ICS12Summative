@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,7 +11,7 @@ import javax.imageio.ImageIO;
 public class Type
 {	
 	private final char chIdentifier;
-	private int health,x,y;
+	private int health,x,y,damage;
 	private final int attack, size,exp;
 	private final int armor, regenRate;
 	private final String name;
@@ -31,6 +33,7 @@ public class Type
 		exp=experience;
 		isAlive=true;
 		deadGraphics=false;
+		damage=0;
 	}
 
 	
@@ -106,6 +109,12 @@ public class Type
 		return name;
 	}
 	
+    //===============setDamage method============
+    public void setDamage (int d)
+    {
+    	damage=d;
+    }
+	
 	//=================getAttack method==============
 	public int getAttack()
 	{
@@ -122,7 +131,14 @@ public class Type
 	public int loseHealth (int loss) //called when type is hurt by player
 	{
 		if (loss>armor)
-		health+=armor-loss;
+		{
+			health+=armor-loss;
+			damage=armor-loss;
+		}
+		else
+		{
+			damage=0;
+		}
 		if(health<=0)
 			{
 				isAlive=false;
@@ -146,6 +162,14 @@ public class Type
 			g.drawImage(PlayGame.getImage("Monsters//"+name+"_Die.png"), x*50,600-y*50,null);
 			deadGraphics=true;
 		}
+		if (damage!=0)
+		{
+			g.setColor(Color.GREEN);
+			Font text = new Font ("SansSerif", Font.BOLD, 20);
+			g.setFont(text);
+	        g.drawString (""+damage,x*50+30,600-(y*50+20));
+		}
+		
 	}
 
 }

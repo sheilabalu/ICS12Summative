@@ -57,7 +57,7 @@ public class MonsterAnimator extends Thread {
 					
 					//shift index of move array 
 					moveIndex[k]++;
-					
+					monster.setDamage(0); //reset damage
 					map.hitPlayer(); //monsters hit player
 					drawBoard.repaint(); //repaint graphics
 					
